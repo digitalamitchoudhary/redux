@@ -29,7 +29,7 @@ export async function fetchVideos(query, per_page = 15) {
 }   
 
 export async function fetchGIF(query,limit=20){
-   const res = await axios.get('https://tenor.googleapis.com/v2/search',{
+   const response = await axios.get('https://tenor.googleapis.com/v2/search',{
     params:{q:query,key:TENOR_KEY,limit},
   })
     return response.data;

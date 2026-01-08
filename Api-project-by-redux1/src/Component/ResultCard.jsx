@@ -5,7 +5,7 @@ function ResultCard({item}) {
     <div>
         <div className="w-[18vw] relative h-80 bg-gray-200 rounded-xl overflow-hidden">
             <a target='_blank' className='h-full' href="/">
-            <img className='w-full h-full' src="https://placehold.co/600x400" alt="" />
+            <img className='w-full h-full' src={item} alt="" />
         </a>
 
         <div id='bottom' className='flex justify-between gap-3 items-center w-full px-4 py-6 absolute bottom-0 text-white'>
