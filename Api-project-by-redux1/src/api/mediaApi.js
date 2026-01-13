@@ -16,14 +16,11 @@ export async function fetchImages(query, per_page = 12, page = 1) {
     });
     return response.data;
 }
-export async function fetchVideos(query, per_page = 15) {
+export async function fetchVideos(query, per_page=15) {
     const response = await axios.get("https://api.pexels.com/videos/search", {
-        params: {
-            query,
-             per_page
-        }, headers: {
-            Authorization: `Client-ID ${PEXELS_KEY}`,
-        },
+        params: {query,per_page},
+            
+        headers: {Authorization:PEXELS_KEY},
     });
     return response.data;
 }   

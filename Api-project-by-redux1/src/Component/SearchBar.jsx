@@ -1,6 +1,6 @@
 
 import {useDispatch} from 'react-redux';
-import { setQuery } from '../Redux/Slice/Search';
+import { setQuery } from '../Redux/Slice/searchSlice.js';
 import { useState } from 'react';
 function SearchBar() {
     const [text, setText] = useState('');
@@ -16,9 +16,9 @@ function SearchBar() {
 
   return (
     <div >
-      <form className='flex w-full  bg-blue-900 justify-center p-4' onClick={(e)=>{sumbitHandler(e)}}>
+      <form className='flex w-full  bg-blue-900 justify-center p-4' onSubmit={(e)=>{sumbitHandler(e)}}>
         <input value={text} onChange={(e)=>{setText(e.target.value)}} type="text" placeholder='Search...' className=' w-[90%] border outline-none p-3 rounded'/>
-        <button className='bg-white rounded text-black py-2 px-5 ml-2'>Search</button>
+        <button type="submit" className='bg-white rounded outline-none cursor-pointer border-2  text-black py-2 px-5 ml-2'>Search</button>
         </form>
     </div>
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setActiveTabs } from '../Redux/Slice/Search';
+import { setActiveTabs } from '../Redux/Slice/searchSlice';
 
 function Tab() {
     const tabs=[ 'Images','Videos','Gifs'];

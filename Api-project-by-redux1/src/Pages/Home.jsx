@@ -13,7 +13,7 @@ function Home() {
             <Tab/> 
             <ResultGrid/>
       </div>
-      <div>Home Page</div>
+     
     </div>
   )
 }
