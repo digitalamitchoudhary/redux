@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 
 function Navbar() {
   return (
@@ -7,8 +8,8 @@ function Navbar() {
       <div className="text-white text-[25px]">Media Search</div>
 
       <div className="btn flex gap-4">
-        <button className='bg-white rounded text-black py-2 px-5'>Search</button>
-        <button className='bg-white rounded text-black py-2 px-5'>Collection</button>
+        <Link to='/' className='bg-white rounded text-black py-2 px-5'>Search</Link>
+        <Link to='/collection' className='bg-white rounded text-black py-2 px-5'>Collection</Link>
       </div>
         </div>
     </div>
