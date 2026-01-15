@@ -1,6 +1,10 @@
 import React from 'react'
 
 function ResultCard({item}) {
+
+    
+
+
   return (
     <div>
         <div className="w-[18vw] relative h-80 bg-gray-200 rounded-xl overflow-hidden">
