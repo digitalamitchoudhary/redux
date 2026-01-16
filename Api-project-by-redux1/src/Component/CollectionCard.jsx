@@ -1,19 +1,17 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { addCollection } from '../Redux/Slice/collectionSlice';
- 
+import { removeCollection } from '../Redux/Slice/collectionSlice';
+import { useDispatch } from 'react-redux';
 
-function ResultCard({item}) {
 
- const dispatch = useDispatch();
-    const addToCollection = (item) => {
-        dispatch(addCollection(item));
-        // console.log("Added to collection:", item);
-        
-    };
+function CollectionCard({ item }) {
+
+    const dispatch = useDispatch();
+    const removeToCollection = (item) => {
+        dispatch(removeCollection(item.id));
+        console.log("Removed from collection:", item); }
 
   return (
-    <div>
+   <div>
         <div className="w-[18vw] relative h-80 bg-gray-200 rounded-xl overflow-hidden">
            <a target='_blank' className='h-full' href={item.url}>
                 {item.type == 'photo' ? <img className='h-full w-full object-cover object-center' src={item.src} alt="" /> : ''}
@@ -25,12 +23,12 @@ function ResultCard({item}) {
                 <h2 className='text-lg font-semibold capitalize h-14 overflow-hidden'>{item.title}</h2>
                 <button
                     onClick={() => {
-                        addToCollection(item)
-                        console.log("Item saved:", item);
+                        removeToCollection(item)
+                        console.log("Item removed:", item);
                     }}
                     className='bg-indigo-600 active:scale-95 text-white rounded px-3 py-1 cursor-pointer font-medium'
                 >
-                    Save
+                    Remove
                 </button>
             </div>
 
@@ -40,4 +38,4 @@ function ResultCard({item}) {
   )
 }
 
-export default ResultCard
+export default CollectionCard
