@@ -7,11 +7,24 @@ function ResultGrid() {
   //  const [firstImage, setFirstImage] = useState("https://placehold.co/600x400")
   const dispatch = useDispatch();
 
-  const { query, results, activeTabs, error, loading } = useSelector(
+  const { query, results, activeTabs, error, loading,cache  } = useSelector(
     (store) => store.search
   );
   useEffect(() => {
     if (!query) return;
+    // if (results.length > 0) return; // 🔴 KEY LINE // wrong way ye tab change hone pr kaam nhi karega
+     // ✅ STEP 1: CACHE CHECK
+  const cachedData = cache[activeTabs]?.[query];
+ if (cachedData) {
+    dispatch(setResults({
+      tab: activeTabs,
+      query,
+      data: cachedData
+    }));
+    return; // ❌ API CALL STOP
+  }
+
+  // ✅ STEP 2: API CALL ONLY IF CACHE MISS
     const getData = async () => {
       try {
         dispatch(setLoading());
@@ -53,9 +66,15 @@ function ResultGrid() {
             url: item.url,
           }));
         }
-        dispatch(setResults(data));
+        // dispatch(setResults(data));
+           dispatch(setResults({
+          tab: activeTabs,
+          query,
+          data
+        }))
 
-        // console.log(data);
+
+        console.log(data);
       } catch (err) {
         dispatch(setError(err.message));
       }

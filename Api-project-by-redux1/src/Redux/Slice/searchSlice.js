@@ -7,7 +7,13 @@ const searchSlice = createSlice({
         activeTabs: "Images",
         results: [],
         loading: false,
-        error: null
+        error: null,
+        
+  cache: {
+    Images: {},
+    Videos: {},
+    Gifs: {}
+  }
     },
     reducers: {
         setQuery: (state, action) => {
@@ -17,8 +23,17 @@ const searchSlice = createSlice({
             state.activeTabs = action.payload
         },
         setResults(state, action) {
-            state.results = action.payload
-           state.loading = false
+        //     state.results = action.payload
+        //    state.loading = false
+
+         const { tab, query, data } = action.payload;
+
+         state.results = data;
+         state.loading = false;
+
+        // ✅ CACHE SAVE (MOST IMPORTANT)
+         state.cache[tab][query] = data;
+
         },
         setLoading: (state) => {
             state.loading = true
