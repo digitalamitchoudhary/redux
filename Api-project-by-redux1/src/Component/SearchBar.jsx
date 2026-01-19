@@ -15,8 +15,8 @@ function SearchBar() {
     }  
 
   return (
-    <div >
-      <form className='flex w-full  bg-blue-900 justify-center p-4' onSubmit={(e)=>{sumbitHandler(e)}}>
+    <div className='flex  bg-blue-900 justify-center   p-8' >
+      <form className='flex w-full' onSubmit={(e)=>{sumbitHandler(e)}}>
         <input value={text} onChange={(e)=>{setText(e.target.value)}} type="text" placeholder='Search...' className=' w-[90%] border outline-none p-3 rounded'/>
         <button type="submit" className='bg-white rounded outline-none cursor-pointer border-2  text-black py-2 px-5 ml-2'>Search</button>
         </form>

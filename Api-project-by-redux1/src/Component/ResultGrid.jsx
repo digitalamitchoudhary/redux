@@ -3,9 +3,36 @@ import ResultCard from './ResultCard';
 import { fetchImages, fetchGIF, fetchVideos } from '../api/mediaApi';
 import { setError, setLoading, setResults } from '../Redux/Slice/searchSlice.js';
 import { useSelector, useDispatch } from 'react-redux';
+import { resetLastAction } from "../Redux/Slice/collectionSlice";
+import { toast } from "react-toastify";
+
+
 function ResultGrid() {
   //  const [firstImage, setFirstImage] = useState("https://placehold.co/600x400")
   const dispatch = useDispatch();
+  const  { lastAction, lastItemType } = useSelector(state => state.collection);
+
+  useEffect(() => {
+  if (!lastAction || !lastItemType) return;
+  const label =
+    lastItemType === "photo"
+      ? "Image"
+      : lastItemType === "video"
+      ? "Video"
+      : "GIF";
+  if (lastAction === "ADDED") {
+    toast.success(`${label} added to collection`);
+  }
+
+  if (lastAction === "EXISTS") {
+      toast.info(`${label} already saved`);
+  }
+
+  // 🔑 VERY IMPORTANT
+  dispatch(resetLastAction());
+
+}, [lastAction, lastItemType, dispatch]);
+
 
   const { query, results, activeTabs, error, loading,cache  } = useSelector(
     (store) => store.search
@@ -74,7 +101,7 @@ function ResultGrid() {
         }))
 
 
-        console.log(data);
+        // console.log(data);
       } catch (err) {
         dispatch(setError(err.message));
       }
